@@ -16,6 +16,8 @@ no network calls; fail loudly on missing models instead of downloading.
 See src/examples/random_baseline.py for a minimal end-to-end wiring example.
 """
 from __future__ import annotations
+from .t11_scoring import DEFAULT_PARAMS, build_scores
+
 
 import pandas as pd
 
@@ -28,6 +30,8 @@ from .metrics.tracks import get_track
 
 # ---------------------------------------------------------------- 01 load
 def load(ctx: RunContext) -> dict:
+    if ctx.track != "t11":
+        raise NotImplementedError(f"this group pipeline only implements t11, not {ctx.track}")
     manifest = ctx.input_dir / "manifest.csv"
     problems = verify_manifest(manifest) if manifest.exists() else [{"problem": "no_manifest"}]
     if problems:
@@ -35,18 +39,24 @@ def load(ctx: RunContext) -> dict:
         if ctx.config.get("strict_provenance", True):
             raise ValueError(f"provenance check failed ({len(problems)} problems), first: {problems[:3]}")
     data = {"manifest": pd.read_csv(manifest) if manifest.exists() else None}
-    # TODO: load the tables/images your track needs, e.g.
-    # data["images"] = pd.read_csv(ctx.input_dir / "images.csv")
+    d = ctx.input_dir
+    data["ann"] = pd.read_csv(d / "annotations.csv")
+    data["pred"] = pd.read_csv(d / "model_predictions.csv")
+    data["images"] = pd.read_csv(d / "images.csv")
+    ctx.stats["n_ann"] = len(data["ann"])
+    ctx.stats["n_pred"] = len(data["pred"])
+
     return data
 
 
 # ---------------------------------------------------------------- 02 process
 def process(ctx: RunContext, data: dict) -> pd.DataFrame:
-    spec = get_track(ctx.track)
-    raise NotImplementedError(
-        f"Implement process() for {spec.track} ({spec.title}). It must produce a DataFrame with at least "
-        f"{spec.pred_columns} (saved as out/{spec.pred_file}). See docs/tracks/{spec.track.upper()}.md"
-    )
+    params = {k: ctx.param(k) for k in DEFAULT_PARAMS if ctx.param(k) is not None}
+    items = build_scores(data["ann"], data["pred"], data["images"], params)
+    ctx.stats["t11_params"] = {**DEFAULT_PARAMS, **params}
+    ctx.stats["n_flagged"] = int((items.score > 0.2).sum())
+    return items
+
 
 
 # ---------------------------------------------------------------- 03 rank
