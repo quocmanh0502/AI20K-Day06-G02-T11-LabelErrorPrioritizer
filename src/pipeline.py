@@ -16,9 +16,6 @@ no network calls; fail loudly on missing models instead of downloading.
 See src/examples/random_baseline.py for a minimal end-to-end wiring example.
 """
 from __future__ import annotations
-from .t11_scoring import DEFAULT_PARAMS, build_scores
-
-
 import pandas as pd
 
 from .common.context import RunContext
@@ -26,6 +23,8 @@ from .common.decision import Decision, write_decision
 from .common.manifest import verify_manifest
 from .common.review import load_review_decisions, make_review_queue, write_review_queue
 from .metrics.tracks import get_track
+from .t11_review import apply_label_fixes, build_workbench_items, decide_policy, render_workbench, review_stats
+from .t11_scoring import DEFAULT_PARAMS, build_scores
 
 
 # ---------------------------------------------------------------- 01 load
@@ -67,31 +66,53 @@ def rank(ctx: RunContext, scored: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("rank(): process() output needs a numeric `score` column (higher = review first), "
                          "or adapt rank() to your track")
     q = make_review_queue(scored, id_col=scored.columns[0], score_col="score", budget=budget,
-                          reason_col="reason" if "reason" in scored.columns else None)
+                          reason_col="reason" if "reason" in scored.columns else None,
+                          evidence_col="path" if "path" in scored.columns else None)
     write_review_queue(q, ctx.out("review_queue.csv"))
     return q
 
 
 # ---------------------------------------------------------------- 04 review
 def review(ctx: RunContext, scored: pd.DataFrame, queue: pd.DataFrame) -> pd.DataFrame:
-    """If a reviewed queue exists (out/review_queue_reviewed.csv), apply it. Otherwise pass through.
+    """Human-in-the-loop.
 
-    TODO: decide what an `edit` / `reject` means for your track and apply it
-    (e.g. via common.review.apply_overrides), logging every change to ctx.audit.
+    Lần 1 (chưa có file duyệt): sinh out/<run>/contact_sheet.html để người kiểm tra duyệt top-B rồi Export CSV.
+    Lần 2 (có out/<run>/review_queue_reviewed.csv): áp sửa nhãn lên BẢN SAO annotations, ghi
+    corrected_annotations.csv + label_changes.csv, mọi quyết định vào audit_log.jsonl.
+    `scored` (ranking) được trả nguyên vẹn: review không đổi điểm/thứ tự đã nộp.
     """
+    d = ctx.input_dir
+    ann = pd.read_csv(d / "annotations.csv")
+    pred = pd.read_csv(d / "model_predictions.csv")
+    images = pd.read_csv(d / "images.csv")
+
     reviewed_path = ctx.output_dir / "review_queue_reviewed.csv"
-    if reviewed_path.exists():
-        reviewed = load_review_decisions(reviewed_path)
-        ctx.stats["n_reviewed"] = len(reviewed)
-        # TODO: apply overrides
+    reviewed = load_review_decisions(reviewed_path) if reviewed_path.exists() else None
+
+    items = build_workbench_items(queue, ann, pred, images, d, reviewed)
+    render_workbench(items, ctx.out("contact_sheet.html"))
+
+    changes = None
+    if reviewed is not None:
+        fixed, changes = apply_label_fixes(ann, reviewed, ctx.audit)
+        fixed.to_csv(ctx.out("corrected_annotations.csv"), index=False)
+        changes.to_csv(ctx.out("label_changes.csv"), index=False)
+        ctx.stats["n_ann_before"], ctx.stats["n_ann_after"] = len(ann), len(fixed)
+    ctx.stats.update(review_stats(reviewed, changes))
     return scored
 
 
 # ---------------------------------------------------------------- 05 decide
 def decide(ctx: RunContext, final: pd.DataFrame) -> Decision:
-    # TODO: replace with your policy (thresholds frozen BEFORE looking at eval results)
-    return Decision(status="HOLD", reason_code="POLICY_NOT_IMPLEMENTED", reason="Decision policy not implemented yet",
-                    owner=ctx.config.get("owner", "TODO-owner"), scope=ctx.track)
+    """Chính sách chốt trước (src/t11_review.py::decide_policy): HOLD / REWORK / GO."""
+    status, code, reason = decide_policy(ctx.stats)
+    evidence = [str(ctx.out(f)) for f in ("ranking.csv", "review_queue.csv", "contact_sheet.html",
+                                          "review_queue_reviewed.csv", "label_changes.csv",
+                                          "corrected_annotations.csv", "audit_log.jsonl") if ctx.out(f).exists()]
+    keys = ("n_reviewed", "n_confirmed", "n_false_positive", "n_escalated", "n_fixed")
+    return Decision(status=status, reason_code=code, reason=reason, owner=ctx.config.get("owner", "TODO-owner"),
+                    scope=f"{ctx.track}:annotations.csv", evidence=evidence,
+                    metrics={k: ctx.stats.get(k) for k in keys})
 
 
 def run(ctx: RunContext) -> None:
