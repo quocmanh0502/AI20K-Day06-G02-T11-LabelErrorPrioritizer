@@ -1,0 +1,60 @@
+{
+  "baseline": {
+    "run": "baseline (random, seed 42)",
+    "k": 10,
+    "errors_in_top_k": 1,
+    "precision_at_k": 0.1,
+    "wilson95": [
+      0.018,
+      0.404
+    ],
+    "error_types_found": [
+      "box_shift"
+    ],
+    "items": [
+      "ann_180",
+      "ann_005",
+      "ann_021",
+      "ann_031",
+      "ann_100",
+      "ann_138",
+      "ann_172",
+      "ann_144",
+      "ann_194",
+      "ann_176"
+    ],
+    "runtime_seconds": 0.0749,
+    "n_items": 260,
+    "seed": 42
+  },
+  "poc": {
+    "run": "PoC (4 detectors)",
+    "k": 10,
+    "errors_in_top_k": 9,
+    "precision_at_k": 0.9,
+    "wilson95": [
+      0.596,
+      0.982
+    ],
+    "error_types_found": [
+      "class_swap",
+      "duplicate",
+      "missing"
+    ],
+    "items": [
+      "img:lbl_43",
+      "ann_032",
+      "ann_096",
+      "ann_134",
+      "ann_006",
+      "ann_171",
+      "ann_186",
+      "ann_d04",
+      "ann_055",
+      "ann_161"
+    ],
+    "runtime_seconds": 0.3349,
+    "n_items": 260,
+    "seed": 42
+  }
+}

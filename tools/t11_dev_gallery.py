@@ -47,6 +47,13 @@ def main():
     dev = set(images.loc[images.split == "dev", "image_id"])          # CHỈ dev — không nhìn heldout
 
     r = pd.read_csv(args.ranking)
+    if "image_id" not in r.columns:                                    # ranking tối giản (item_id, score), vd baseline
+        ann_img = ann.set_index("ann_id").image_id
+        r["image_id"] = [i[4:] if i.startswith("img:") else ann_img[i] for i in r.item_id]
+    if "path" not in r.columns:
+        r = r.merge(images[["image_id", "path"]], on="image_id", how="left")
+    if "reason" not in r.columns:
+        r["reason"] = "-"
     r = r[r.image_id.isin(dev)].head(args.top).reset_index(drop=True)
     r["rank"] = range(1, len(r) + 1)
 

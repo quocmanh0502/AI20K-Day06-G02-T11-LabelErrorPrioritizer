@@ -1,21 +1,30 @@
-rank,item_id,reason,score,my_label,my_error_type,note
-1,img:lbl_43,missing,0.99,error,missing,biển báo góc trên-trái model thấy (0.99) nhưng không có annotation
-2,ann_032,duplicate,0.954798855,error,duplicate,xe hồng có 2 khung car chồng nhau (ann_032 + ann_d02); không biết khung nào là bản sao
-3,ann_096,class_swap,0.939,ok,,có bánh xe đen + không có đầu tròn -> đúng là motorbike; model nhầm thành pedestrian (false positive)
-4,ann_134,class_swap,0.928,error,class_swap,đầu tròn + thân dài không bánh xe -> pedestrian nhưng gán motorbike
-5,ann_006,class_swap,0.864,error,class_swap,đầu tròn + thân đỏ dài -> pedestrian nhưng gán motorbike; không thấy vật thể bị thiếu khung
-6,ann_171,class_swap,0.859,error,class_swap,xe hơi xanh có kính nhưng gán motorbike
-7,ann_186,duplicate,0.851383697,error,duplicate,xe tím có 2 khung car chồng nhau (ann_185 + ann_186)
-8,ann_d04,duplicate,0.849473156,error,duplicate,biển báo có 2 khung sign chồng nhau (ann_014 + ann_d04)
-9,ann_055,class_swap,0.811,error,class_swap,có bánh xe đen -> motorbike nhưng gán pedestrian
-10,ann_161,class_swap,0.802,error,class_swap,xe hơi vàng nhưng gán motorbike
-11,ann_178,class_swap,0.79,error,class_swap,đầu tròn + thân xanh dài -> pedestrian nhưng gán motorbike
-12,ann_148,duplicate,0.759807846,error,duplicate,người đi bộ có 2 khung chồng nhau (ann_148 + ann_d03)
-13,img:lbl_14,missing,0.732,error,missing,biển báo giữa ảnh model thấy (0.73) nhưng không có annotation
-14,ann_184,class_swap,0.729,error,class_swap,xe hơi đỏ nhưng gán motorbike
-15,ann_159,box_shift,0.681682552,error,box_shift,khung sign lệch lên phải khỏi biển báo
-16,ann_192,class_swap,0.613,error,class_swap,xe hơi xanh lá nhưng gán motorbike
-17,img:lbl_20,missing,0.568,ok,,model báo sign (0.57) trên bãi cỏ trống - không có vật thể (false positive của model)
-18,ann_104,box_shift,0.523565785,error,box_shift,khung sign lệch xuống trái so với biển báo
-19,ann_176,box_shift,0.492179365,error,box_shift,khung car lệch sang phải đè lên người đi bộ
-20,ann_170,box_shift,0.482122878,error,box_shift,khung car lệch lên phải khỏi xe
+rank,item_id,reason,score,my_label,my_error_type,note,source
+1,img:lbl_43,missing,0.99,error,missing,biển báo góc trên-trái model thấy (0.99) nhưng không có annotation,poc
+2,ann_032,duplicate,0.954798855,error,duplicate,xe hồng có 2 khung car chồng nhau (ann_032 + ann_d02); không biết khung nào là bản sao,poc
+3,ann_096,class_swap,0.939,ok,,có bánh xe đen + không có đầu tròn -> đúng là motorbike; model nhầm thành pedestrian (false positive),poc
+4,ann_134,class_swap,0.928,error,class_swap,đầu tròn + thân dài không bánh xe -> pedestrian nhưng gán motorbike,poc
+5,ann_006,class_swap,0.864,error,class_swap,đầu tròn + thân đỏ dài -> pedestrian nhưng gán motorbike; không thấy vật thể bị thiếu khung,poc
+6,ann_171,class_swap,0.859,error,class_swap,xe hơi xanh có kính nhưng gán motorbike,poc
+7,ann_186,duplicate,0.851383697,error,duplicate,xe tím có 2 khung car chồng nhau (ann_185 + ann_186),poc
+8,ann_d04,duplicate,0.849473156,error,duplicate,biển báo có 2 khung sign chồng nhau (ann_014 + ann_d04),poc
+9,ann_055,class_swap,0.811,error,class_swap,có bánh xe đen -> motorbike nhưng gán pedestrian,poc
+10,ann_161,class_swap,0.802,error,class_swap,xe hơi vàng nhưng gán motorbike,poc
+11,ann_178,class_swap,0.79,error,class_swap,đầu tròn + thân xanh dài -> pedestrian nhưng gán motorbike,poc
+12,ann_148,duplicate,0.759807846,error,duplicate,người đi bộ có 2 khung chồng nhau (ann_148 + ann_d03),poc
+13,img:lbl_14,missing,0.732,error,missing,biển báo giữa ảnh model thấy (0.73) nhưng không có annotation,poc
+14,ann_184,class_swap,0.729,error,class_swap,xe hơi đỏ nhưng gán motorbike,poc
+15,ann_159,box_shift,0.681682552,error,box_shift,khung sign lệch lên phải khỏi biển báo,poc
+16,ann_192,class_swap,0.613,error,class_swap,xe hơi xanh lá nhưng gán motorbike,poc
+17,img:lbl_20,missing,0.568,ok,,model báo sign (0.57) trên bãi cỏ trống - không có vật thể (false positive của model),poc
+18,ann_104,box_shift,0.523565785,error,box_shift,khung sign lệch xuống trái so với biển báo,poc
+19,ann_176,box_shift,0.492179365,error,box_shift,khung car lệch sang phải đè lên người đi bộ,poc+baseline
+20,ann_170,box_shift,0.482122878,error,box_shift,khung car lệch lên phải khỏi xe,poc
+1,ann_180,random,0.992375564055837,ok,,"box car khớp xe xanh lá, đúng class",baseline
+2,ann_005,random,0.9756223516367559,ok,,"box car khớp xe đỏ, đúng class",baseline
+3,ann_021,random,0.9706980243949033,ok,,"box car khớp xe xanh lá, đúng class",baseline
+4,ann_031,random,0.96750973243421,ok,,box sign khớp biển báo,baseline
+5,ann_100,random,0.9618976645495145,ok,,box car khớp xe xanh dương nhỏ,baseline
+6,ann_138,random,0.9585592132414453,ok,,box pedestrian khớp người đi bộ (đầu tròn + thân dài),baseline
+7,ann_172,random,0.952899395069745,ok,,box car khớp xe tím lớn,baseline
+8,ann_144,random,0.9378264549749828,ok,,"biển báo thật, box đúng; model không phát hiện được",baseline
+9,ann_194,random,0.9368131505337792,ok,,box sign khớp biển báo,baseline
