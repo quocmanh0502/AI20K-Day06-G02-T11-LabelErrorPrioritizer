@@ -1,0 +1,11 @@
+rank,item_id,score,reason,suggested_action,slice,evidence_path,reviewer,reviewer_decision,override_value,review_note,reviewed_at
+1,img:lbl_43,0.99,missing,,,images/lbl_43.jpg,Nguyễn Mạnh Dũng,edit,"add=sign,9.88,16.73,22.05,20.37",Biển báo tròn đỏ ở góc trên trái chưa có bbox nhãn gốc,2026-11-14T10:26:46.011Z
+2,ann_032,0.954799,duplicate,,,images/lbl_09.jpg,Nguyễn Mạnh Dũng,edit,delete,Hai bbox cùng bao một ô tô; xóa ann_032 bị trùng với ann_d02.,2026-11-14T10:29:22.880Z
+3,ann_096,0.939,class_swap,,,images/lbl_24.jpg,Nguyễn Mạnh Dũng,reject,,"Đối tượng có hai bánh xe đen phía dưới, đúng là motorbike; giữ nguyên nhãn gốc.",2026-11-14T10:30:25.172Z
+4,ann_058,0.936909,duplicate,,,images/lbl_16.jpg,Nguyễn Mạnh Dũng,edit,delete,"ann_058 và ann_d00 cùng bao ô tô vàng; xóa ann_058, giữ ann_d00.",2026-11-14T10:34:28.936Z
+5,ann_134,0.928,class_swap,,,images/lbl_33.jpg,Nguyễn Mạnh Dũng,edit,class=pedestrian,"Đối tượng có đầu tròn, thân đứng và không có bánh xe; đổi motorbike thành pedestrian",2026-11-14T10:36:06.542Z
+6,ann_109,0.885,class_swap,,,images/lbl_28.jpg,Nguyễn Mạnh Dũng,edit,class=car,Đối tượng là ô tô đỏ có thân ngang và kính xanh; đổi motorbike thành car,2026-11-14T10:40:20.964Z
+7,ann_006,0.864,class_swap,,,images/lbl_01.jpg,Nguyễn Mạnh Dũng,edit,class=pedestrian,"Đối tượng có đầu tròn, thân đứng và không có bánh xe; đổi motorbike thành pedestrian.",2026-11-14T10:41:10.707Z
+8,ann_171,0.859,class_swap,,,images/lbl_44.jpg,Nguyễn Mạnh Dũng,edit,class=car,Đối tượng là ô tô tím có thân ngang và kính xanh; đổi motorbike thành car,2026-11-14T10:41:55.437Z
+9,img:lbl_49,0.852,missing,,,images/lbl_49.jpg,Nguyễn Mạnh Dũng,edit,"add=car,159.32,80.71,25.1,15.83",Ô tô tím phía xa chưa có bbox nhãn gốc; thêm box car.,2026-11-14T10:42:47.464Z
+10,ann_186,0.851384,duplicate,,,images/lbl_48.jpg,Nguyễn Mạnh Dũng,edit,delete,"ann_186 và ann_185 cùng bao một ô tô tím; xóa ann_186, giữ ann_185.",2026-11-14T10:44:11.770Z

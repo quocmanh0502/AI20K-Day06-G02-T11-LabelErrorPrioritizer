@@ -1,0 +1,10 @@
+item_id,kind,before,after,reviewer,note
+img:lbl_43,add,,"add=sign,9.88,16.73,22.05,20.37",Nguyễn Mạnh Dũng,Biển báo tròn đỏ ở góc trên trái chưa có bbox nhãn gốc
+ann_032,delete,"{""ann_id"": ""ann_032"", ""image_id"": ""lbl_09"", ""class"": ""car"", ""x"": 145.7, ""y"": 131.6, ""w"": 64.87, ""h"": 38.33}",delete,Nguyễn Mạnh Dũng,Hai bbox cùng bao một ô tô; xóa ann_032 bị trùng với ann_d02.
+ann_058,delete,"{""ann_id"": ""ann_058"", ""image_id"": ""lbl_16"", ""class"": ""car"", ""x"": 156.02, ""y"": 111.69, ""w"": 46.05, ""h"": 27.21}",delete,Nguyễn Mạnh Dũng,"ann_058 và ann_d00 cùng bao ô tô vàng; xóa ann_058, giữ ann_d00."
+ann_134,class,"{""ann_id"": ""ann_134"", ""image_id"": ""lbl_33"", ""class"": ""motorbike"", ""x"": 87.52, ""y"": 79.1, ""w"": 8.15, ""h"": 23.05}",class=pedestrian,Nguyễn Mạnh Dũng,"Đối tượng có đầu tròn, thân đứng và không có bánh xe; đổi motorbike thành pedestrian"
+ann_109,class,"{""ann_id"": ""ann_109"", ""image_id"": ""lbl_28"", ""class"": ""motorbike"", ""x"": 99.51, ""y"": 130.0, ""w"": 63.48, ""h"": 37.51}",class=car,Nguyễn Mạnh Dũng,Đối tượng là ô tô đỏ có thân ngang và kính xanh; đổi motorbike thành car
+ann_006,class,"{""ann_id"": ""ann_006"", ""image_id"": ""lbl_01"", ""class"": ""motorbike"", ""x"": 34.94, ""y"": 101.74, ""w"": 16.12, ""h"": 45.59}",class=pedestrian,Nguyễn Mạnh Dũng,"Đối tượng có đầu tròn, thân đứng và không có bánh xe; đổi motorbike thành pedestrian."
+ann_171,class,"{""ann_id"": ""ann_171"", ""image_id"": ""lbl_44"", ""class"": ""motorbike"", ""x"": 156.47, ""y"": 91.11, ""w"": 32.49, ""h"": 19.2}",class=car,Nguyễn Mạnh Dũng,Đối tượng là ô tô tím có thân ngang và kính xanh; đổi motorbike thành car
+img:lbl_49,add,,"add=car,159.32,80.71,25.1,15.83",Nguyễn Mạnh Dũng,Ô tô tím phía xa chưa có bbox nhãn gốc; thêm box car.
+ann_186,delete,"{""ann_id"": ""ann_186"", ""image_id"": ""lbl_48"", ""class"": ""car"", ""x"": 124.44, ""y"": 124.76, ""w"": 58.15, ""h"": 34.36}",delete,Nguyễn Mạnh Dũng,"ann_186 và ann_185 cùng bao một ô tô tím; xóa ann_186, giữ ann_185."

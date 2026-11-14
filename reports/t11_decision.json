@@ -1,0 +1,25 @@
+{
+  "status": "REWORK",
+  "reason_code": "HIGH_CONFIRMED_ERROR_RATE",
+  "reason": "9/10 mục trong queue là lỗi thật (90%) ≥ 30% → lô nhãn có lỗi hệ thống, trả vendor gán lại.",
+  "owner": "Hoàng Quốc Mạnh (Data QA lead)",
+  "scope": "t11:annotations.csv",
+  "evidence": [
+    "out\\poc\\ranking.csv",
+    "out\\poc\\review_queue.csv",
+    "out\\poc\\contact_sheet.html",
+    "out\\poc\\review_queue_reviewed.csv",
+    "out\\poc\\label_changes.csv",
+    "out\\poc\\corrected_annotations.csv",
+    "out\\poc\\audit_log.jsonl"
+  ],
+  "metrics": {
+    "n_reviewed": 10,
+    "n_confirmed": 9,
+    "n_false_positive": 1,
+    "n_escalated": 0,
+    "n_fixed": 9
+  },
+  "ts": "2026-11-14T10:47:04+00:00",
+  "canonical": "REWORK"
+}
