@@ -1,0 +1,21 @@
+rank,item_id,reason,score,my_label,my_error_type,note
+1,img:lbl_43,missing,0.99,error,missing,biển báo góc trên-trái model thấy (0.99) nhưng không có annotation
+2,ann_032,duplicate,0.954798855,error,duplicate,xe hồng có 2 khung car chồng nhau (ann_032 + ann_d02); không biết khung nào là bản sao
+3,ann_096,class_swap,0.939,ok,,có bánh xe đen + không có đầu tròn -> đúng là motorbike; model nhầm thành pedestrian (false positive)
+4,ann_134,class_swap,0.928,error,class_swap,đầu tròn + thân dài không bánh xe -> pedestrian nhưng gán motorbike
+5,ann_006,class_swap,0.864,error,class_swap,đầu tròn + thân đỏ dài -> pedestrian nhưng gán motorbike; không thấy vật thể bị thiếu khung
+6,ann_171,class_swap,0.859,error,class_swap,xe hơi xanh có kính nhưng gán motorbike
+7,ann_186,duplicate,0.851383697,error,duplicate,xe tím có 2 khung car chồng nhau (ann_185 + ann_186)
+8,ann_d04,duplicate,0.849473156,error,duplicate,biển báo có 2 khung sign chồng nhau (ann_014 + ann_d04)
+9,ann_055,class_swap,0.811,error,class_swap,có bánh xe đen -> motorbike nhưng gán pedestrian
+10,ann_161,class_swap,0.802,error,class_swap,xe hơi vàng nhưng gán motorbike
+11,ann_178,class_swap,0.79,error,class_swap,đầu tròn + thân xanh dài -> pedestrian nhưng gán motorbike
+12,ann_148,duplicate,0.759807846,error,duplicate,người đi bộ có 2 khung chồng nhau (ann_148 + ann_d03)
+13,img:lbl_14,missing,0.732,error,missing,biển báo giữa ảnh model thấy (0.73) nhưng không có annotation
+14,ann_184,class_swap,0.729,error,class_swap,xe hơi đỏ nhưng gán motorbike
+15,ann_159,box_shift,0.681682552,error,box_shift,khung sign lệch lên phải khỏi biển báo
+16,ann_192,class_swap,0.613,error,class_swap,xe hơi xanh lá nhưng gán motorbike
+17,img:lbl_20,missing,0.568,ok,,model báo sign (0.57) trên bãi cỏ trống - không có vật thể (false positive của model)
+18,ann_104,box_shift,0.523565785,error,box_shift,khung sign lệch xuống trái so với biển báo
+19,ann_176,box_shift,0.492179365,error,box_shift,khung car lệch sang phải đè lên người đi bộ
+20,ann_170,box_shift,0.482122878,error,box_shift,khung car lệch lên phải khỏi xe
