@@ -10,7 +10,7 @@
 |---|---|
 | Group ID | G02 |
 | Challenge | T11 · Post-label Error Review Prioritizer |
-| Thành viên + vai trò | 1. Hoàng Quốc Mạnh (A) — Lead/Integrator · Core algorithm · QA/metric · Report · 2. Nguyễn Mạnh Dũng (B) — Review UI (contact sheet) · Human reviewer |
+| Thành viên + vai trò | 1. Hoàng Quốc Mạnh (2A202603219) (A) — Lead/Integrator · Core algorithm · QA/metric · Report · 2. Nguyễn Mạnh Dũng (2A202603197) (B) — Review UI (contact sheet) · Human reviewer |
 | Git URL | https://github.com/quocmanh0502/AI20K-Day06-G02-T11-LabelErrorPrioritizer |
 | Tag `demo-180m` (commit) | xem `git rev-parse --short demo-180m` (tag tạo sau commit cuối của bản demo) |
 | Tag `final-24h` (commit) | xem `git rev-parse --short final-24h` |
