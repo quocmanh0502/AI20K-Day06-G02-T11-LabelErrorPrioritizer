@@ -1,6 +1,3 @@
 member,git_author_name,git_email,role,modules_files,commit_shas,evidence_note,presenter
-Member 1,,,Lead / Integrator,src/main.py; configs/,,,
-Member 2,,,Data & fixtures,fixtures/; tools/,,,
-Member 3,,,Core algorithm,src/pipeline.py,,,
-Member 4,,,QA / metric,tests/; reports/metrics_*.json,,,
-Member 5,,,Human review + report,reports/group_report.md; demo/,,,
+Hoàng Quốc Mạnh (A),Quoc Manh,,Lead / Core algorithm / QA / Report,src/t11_scoring.py; src/t11_review.py; src/pipeline.py; configs/lab.yaml; tools/t11_dev_gallery.py; tools/t11_dev_compare.py; tools/t11_before_after.py; tests/test_t11_scoring.py; tests/test_t11_review.py; reports/group_report.md; reports/metric_contract.md; reports/t11_dev_*; demo/slides.md,fb96b66;bb96264;0e514ba;e0f25f6;44c6d63;440a5aa,4 detector + ranking; review/decision code; tests; dev Precision@10 0.90 vs baseline 0.10; report,yes
+Nguyễn Mạnh Dũng (B),Nguyễn Mạnh Dũng,,Review UI / Human reviewer,src/templates/t11_review_workbench.html; reports/t11_review_queue_reviewed.csv; reports/t11_label_changes.csv; reports/t11_audit_log.jsonl; reports/t11_decision.json; demo/t11_before_after.png; demo/t11_contact_sheet.html,d84f1ff;887fbe9,"Giao diện contact sheet (CVAT-style); duyệt 10 mục top-B: 9 edit (4 class, 3 delete, 2 add), 1 reject ann_096 → REWORK",yes
